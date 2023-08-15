@@ -9,14 +9,36 @@
 import UIKit
 
 class WelcomeViewController: UIViewController {
-
+    
     @IBOutlet weak var titleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
+        
+        titleLabel.text = ""
+        let titleText = "⚡️FlashChat"
+        var number = 0.0
+        
+        for letter in titleText
+        {
+            Timer.scheduledTimer(withTimeInterval: 0.1 + number, repeats: false)
+            { timer in
+                self.titleLabel.text?.append(letter)
+            }
+            number += 0.1
+            
+            // TODO: Check why this prints text in different order each time inconsistently
+            //        let text = "⚡️FlashChat"
+            //        var emptyText = ""
+            //
+            //        for letter in text
+            //        {
+            //            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false)
+            //            { timer in
+            //                emptyText.append(letter)
+            //                print(emptyText)
+            //            }
+            //        }
+        }
     }
-    
-
 }
