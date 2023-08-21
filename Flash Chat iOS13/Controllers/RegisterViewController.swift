@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseCore
 import FirebaseAuth
 
 class RegisterViewController: UIViewController {
@@ -21,6 +20,7 @@ class RegisterViewController: UIViewController {
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if error != nil
                 {
+                    print(error!)
                     self.errorLabel.text = error!.localizedDescription
                     self.errorLabel.isHidden = false
                 }
@@ -28,7 +28,6 @@ class RegisterViewController: UIViewController {
                 {
                     // Go to ChatViewController
                     self.performSegue(withIdentifier: "RegisterToChat", sender: self)
-                    print(authResult!.user)
                 }
             }
         }

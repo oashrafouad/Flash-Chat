@@ -17,19 +17,5 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         
         titleLabel.text = "⚡️FlashChat"
-        
-//        titleLabel.text = ""
-//        let titleText = "⚡️FlashChat"
-//        var number = 0.0
-//
-//        for letter in titleText
-//        {
-//            Timer.scheduledTimer(withTimeInterval: 0.1 + number, repeats: false)
-//            { timer in
-//                self.titleLabel.text?.append(letter)
-//            }
-//            number += 0.1
-//
-//        }
     }
 }
