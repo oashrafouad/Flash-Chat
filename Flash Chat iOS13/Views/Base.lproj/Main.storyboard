@@ -363,6 +363,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Q5u-eL-Bgp">
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="awq-Fq-ixi">
+                            <color key="tintColor" name="backgroundColor"/>
                             <connections>
                                 <action selector="logOutPressed:" destination="lwd-AH-u8E" id="8RB-pc-nDP"/>
                             </connections>
