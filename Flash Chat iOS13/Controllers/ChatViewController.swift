@@ -16,7 +16,7 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Chat"
+        title = K.appName
         // Change title color to white
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
