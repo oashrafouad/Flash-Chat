@@ -15,7 +15,7 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // TODO: show animation even if user returns to this screen by logging out
         titleLabel.text = K.appName
     }
 }
