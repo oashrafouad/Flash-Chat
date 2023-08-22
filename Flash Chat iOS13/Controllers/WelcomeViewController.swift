@@ -13,9 +13,8 @@ class WelcomeViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: CLTypingLabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // TODO: show animation even if user returns to this screen by logging out
+    // Animate label each time user returns to welcome screen
+    override func viewWillAppear(_ animated: Bool) {
         titleLabel.text = K.appName
     }
 }
