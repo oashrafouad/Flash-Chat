@@ -17,7 +17,9 @@ class ChatViewController: UIViewController {
     var messages = [
         Message(sender: "1@2.com", body: "Hey!"),
         Message(sender: "omar@gmail.com", body: "Hello!"),
-        Message(sender: "1@2.com", body: "How are you?")
+        Message(sender: "1@2.com", body: "How are you?"),
+        // generate another message with long sample message text
+        Message(sender: "omar@gmail.com", body: "Hey there! Just wanted to check in and see how you're doing. I hope everything is going well for you. Remember that you're awesome and capable of achieving great things. If you ever need someone to talk to, I'm here for you. Stay positive and keep pushing forward! Wishing you a fantastic day ahead. Take care and talk to you soon!")
     ]
     
     override func viewDidLoad() {
@@ -30,6 +32,9 @@ class ChatViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
         navigationItem.hidesBackButton = true
+        
+        // Tells the table view to create new cells from the MessageCell nib
+        tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
@@ -45,6 +50,7 @@ class ChatViewController: UIViewController {
     }
 }
 
+//MARK: - UITableViewDataSource
 extension ChatViewController: UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,9 +58,10 @@ extension ChatViewController: UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
+        // Dequeue a reusable cell from the MessageCell nib
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageCell
         // TODO: use newer method
-        cell.textLabel?.text = messages[indexPath.row].body
+        cell.messageLabel?.text = messages[indexPath.row].body
         return cell
     }
 }
