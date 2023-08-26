@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class ChatViewController: UIViewController {
 
@@ -22,10 +23,13 @@ class ChatViewController: UIViewController {
         Message(sender: "omar@gmail.com", body: "Hey there! Just wanted to check in and see how you're doing. I hope everything is going well for you. Remember that you're awesome and capable of achieving great things. If you ever need someone to talk to, I'm here for you. Stay positive and keep pushing forward! Wishing you a fantastic day ahead. Take care and talk to you soon!")
     ]
     
+    let db = Firestore.firestore()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
+        tableView.delegate = self
         
         title = K.appName
         // Change title color to white
@@ -38,6 +42,22 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
+        if let messageSender = Auth.auth().currentUser?.email, let messageBody = messageTextfield.text {
+            db.collection(K.FStore.collectionName).addDocument(data: [
+                K.FStore.senderField: messageSender,
+                K.FStore.bodyField: messageBody
+            ]) { (error) in
+                if error != nil
+                {
+                    print(error!)
+                }
+                else
+                {
+                    print("Successfully saved data")
+                    self.messageTextfield.text = ""
+                }
+            }
+        }
     }
     
     @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
@@ -63,5 +83,15 @@ extension ChatViewController: UITableViewDataSource
         // TODO: use newer method
         cell.messageLabel?.text = messages[indexPath.row].body
         return cell
+    }
+}
+
+//MARK: - UITableViewDelegate
+extension ChatViewController: UITableViewDelegate
+{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Dismiss keyboard when pressing on any tableview cell
+        messageTextfield.endEditing(true)
+
     }
 }
