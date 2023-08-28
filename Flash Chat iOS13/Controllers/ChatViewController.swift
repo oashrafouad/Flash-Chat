@@ -34,21 +34,23 @@ class ChatViewController: UIViewController {
         // Tells the table view to create new cells from the MessageCell nib
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
         
-        messages = []
-        
         loadMessages()
         
     }
     
     func loadMessages()
     {
-        db.collection(K.FStore.collectionName).getDocuments { querySnapshot, error in
+        // Gets executed automatically whenever a new message (document) is added via the send button
+        db.collection(K.FStore.collectionName).addSnapshotListener { querySnapshot, error in
+            self.messages = []
+            
             if error != nil
             {
                 print("Error reading data from Firestore: \(error!)")
             }
             else
             {
+                print("Reading data successful")
                 if let snapshotDocuments = querySnapshot?.documents
                 {
                     for document in snapshotDocuments
