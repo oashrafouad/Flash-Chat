@@ -15,13 +15,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
     
-    var messages = [
-        Message(sender: "1@2.com", body: "Hey!"),
-        Message(sender: "omar@gmail.com", body: "Hello!"),
-        Message(sender: "1@2.com", body: "How are you?"),
-        // generate another message with long sample message text
-        Message(sender: "omar@gmail.com", body: "Hey there! Just wanted to check in and see how you're doing. I hope everything is going well for you. Remember that you're awesome and capable of achieving great things. If you ever need someone to talk to, I'm here for you. Stay positive and keep pushing forward! Wishing you a fantastic day ahead. Take care and talk to you soon!")
-    ]
+    var messages: [Message] = []
     
     let db = Firestore.firestore()
     
@@ -39,6 +33,40 @@ class ChatViewController: UIViewController {
         
         // Tells the table view to create new cells from the MessageCell nib
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
+        
+        messages = []
+        
+        loadMessages()
+        
+    }
+    
+    func loadMessages()
+    {
+        db.collection(K.FStore.collectionName).getDocuments { querySnapshot, error in
+            if error != nil
+            {
+                print("Error reading data from Firestore: \(error!)")
+            }
+            else
+            {
+                if let snapshotDocuments = querySnapshot?.documents
+                {
+                    for document in snapshotDocuments
+                    {
+                        let documentData = document.data()
+                        if let messageSender = documentData[K.FStore.senderField] as? String, let messageBody = documentData[K.FStore.bodyField] as? String
+                        {
+                            let newMessage = Message(sender: messageSender, body: messageBody)
+                            self.messages.append(newMessage)
+                            
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
@@ -49,7 +77,7 @@ class ChatViewController: UIViewController {
             ]) { (error) in
                 if error != nil
                 {
-                    print(error!)
+                    print("Error saving data to Firestore: \(error!)")
                 }
                 else
                 {
