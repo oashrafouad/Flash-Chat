@@ -98,6 +98,37 @@ class ChatViewController: UIViewController {
             print("Error signing out: %@", signOutError)
         }
     }
+    
+    // Delete all messages (documents) (only for testing)
+    @IBAction func deleteAllMessagesPressed(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Clear History", message: "Are you sure you want to clear messages history?", preferredStyle: .alert)
+        
+        let deleteAlertAction = UIAlertAction(title: "Delete", style: .destructive) { action in
+            self.db.collection(K.FStore.collectionName).getDocuments { querySnapshot, error in
+                if error != nil
+                {
+                    print("Error deleting documents: \(error!)")
+                }
+                else
+                {
+                    for document in querySnapshot!.documents
+                    {
+                        document.reference.delete()
+                    }
+                    self.messages = []
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        
+        let cancelAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(deleteAlertAction)
+        alertController.addAction(cancelAlertAction)
+        
+        self.present(alertController, animated: true)
+    }
+    
 }
 
 //MARK: - UITableViewDataSource

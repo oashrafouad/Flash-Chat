@@ -361,6 +361,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Q5u-eL-Bgp">
+                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="h9v-yW-Kym">
+                            <color key="tintColor" red="1" green="0.59819717174522202" blue="0.57265426708605882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="deleteAllMessagesPressed:" destination="lwd-AH-u8E" id="8VT-Iq-f9m"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="awq-Fq-ixi">
                             <color key="tintColor" name="backgroundColor"/>
                             <connections>
