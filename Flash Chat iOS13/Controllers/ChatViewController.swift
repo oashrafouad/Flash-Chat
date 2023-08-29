@@ -49,7 +49,7 @@ class ChatViewController: UIViewController {
             }
             else
             {
-                print("Reading data successful")
+//                print("Reading data successful")
                 if let snapshotDocuments = querySnapshot?.documents
                 {
                     for document in snapshotDocuments
@@ -82,7 +82,7 @@ class ChatViewController: UIViewController {
                 }
                 else
                 {
-                    print("Successfully saved data")
+//                    print("Successfully saved data")
                     self.messageTextfield.text = ""
                 }
             }
@@ -115,6 +115,7 @@ class ChatViewController: UIViewController {
                         document.reference.delete()
                     }
                     self.messages = []
+                    print("Successfully deleted data")
                     self.tableView.reloadData()
                 }
             }
@@ -141,7 +142,12 @@ extension ChatViewController: UITableViewDataSource
         // Dequeue a reusable cell from the MessageCell nib
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageCell
         // TODO: use newer method
-        cell.messageLabel?.text = messages[indexPath.row].body
+        print("reloaded data of cell \(indexPath.row)")
+        print(messages)
+        if !messages.isEmpty
+        {
+            cell.messageLabel?.text = messages[indexPath.row].body
+        }
         return cell
     }
 }
