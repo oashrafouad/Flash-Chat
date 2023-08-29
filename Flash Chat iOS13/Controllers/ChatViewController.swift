@@ -14,6 +14,7 @@ class ChatViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
+    @IBOutlet weak var sendButton: UIButton!
     
     var messages: [Message] = []
     
@@ -23,6 +24,7 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.dataSource = self
+        messageTextfield.delegate = self
         
         title = K.appName
         // Change title color to white
@@ -117,7 +119,7 @@ class ChatViewController: UIViewController {
                     self.messages = []
                     print("Successfully deleted data")
                     DispatchQueue.main.async {
-                        // For avoiding bug where a single message would remain after deleting, requiring reloading again
+                        // Wait before reloading for avoiding bug where a single message would remain after deleting, requiring reloading again
                         Thread.sleep(forTimeInterval: 0.1)
                         self.tableView.reloadData()
                     }
@@ -164,5 +166,19 @@ extension ChatViewController: UITableViewDataSource
 //            print("true")
         }
         return cell
+    }
+}
+
+extension ChatViewController: UITextFieldDelegate
+{
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if messageTextfield.hasText
+        {
+            sendButton.isEnabled = true
+        }
+        else
+        {
+            sendButton.isEnabled = false
+        }
     }
 }
