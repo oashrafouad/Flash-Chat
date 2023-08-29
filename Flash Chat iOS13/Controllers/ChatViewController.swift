@@ -23,7 +23,6 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.dataSource = self
-        tableView.delegate = self
         
         title = K.appName
         // Change title color to white
@@ -144,15 +143,5 @@ extension ChatViewController: UITableViewDataSource
         // TODO: use newer method
         cell.messageLabel?.text = messages[indexPath.row].body
         return cell
-    }
-}
-
-//MARK: - UITableViewDelegate
-extension ChatViewController: UITableViewDelegate
-{
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Dismiss keyboard when pressing on any tableview cell
-        messageTextfield.endEditing(true)
-
     }
 }
