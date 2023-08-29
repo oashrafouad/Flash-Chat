@@ -26,6 +26,8 @@ class ChatViewController: UIViewController {
         tableView.dataSource = self
         messageTextfield.delegate = self
         
+        messageTextfield.enablesReturnKeyAutomatically = true
+        
         title = K.appName
         // Change title color to white
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -180,5 +182,11 @@ extension ChatViewController: UITextFieldDelegate
         {
             sendButton.isEnabled = false
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // The IBAction can take any button as argument, so I just created one, sendButton can also be used
+        sendPressed(UIButton.init())
+        return true
     }
 }
