@@ -116,7 +116,11 @@ class ChatViewController: UIViewController {
                     }
                     self.messages = []
                     print("Successfully deleted data")
-                    self.tableView.reloadData()
+                    DispatchQueue.main.async {
+                        // For avoiding bug where a single message would remain after deleting, requiring reloading again
+                        Thread.sleep(forTimeInterval: 0.1)
+                        self.tableView.reloadData()
+                    }
                 }
             }
         }
@@ -129,12 +133,18 @@ class ChatViewController: UIViewController {
         self.present(alertController, animated: true)
     }
     
+    
+    @IBAction func reloadTableView(_ sender: UIBarButtonItem) {
+        tableView.reloadData()
+    }
+    
 }
 
 //MARK: - UITableViewDataSource
 extension ChatViewController: UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(messages.count)
         return messages.count
     }
     
@@ -142,11 +152,16 @@ extension ChatViewController: UITableViewDataSource
         // Dequeue a reusable cell from the MessageCell nib
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageCell
         // TODO: use newer method
-        print("reloaded data of cell \(indexPath.row)")
-        print(messages)
+//        print("reloaded data of cell \(indexPath.row)")
+//        print(messages)
         if !messages.isEmpty
         {
+//            print("false")
             cell.messageLabel?.text = messages[indexPath.row].body
+        }
+        else
+        {
+//            print("true")
         }
         return cell
     }

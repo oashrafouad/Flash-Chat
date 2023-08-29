@@ -361,12 +361,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Q5u-eL-Bgp">
-                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="h9v-yW-Kym">
-                            <color key="tintColor" red="1" green="0.59819717174522202" blue="0.57265426708605882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <connections>
-                                <action selector="deleteAllMessagesPressed:" destination="lwd-AH-u8E" id="8VT-Iq-f9m"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem systemItem="trash" id="h9v-yW-Kym">
+                                <color key="tintColor" red="1" green="0.59819717174522202" blue="0.57265426708605882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="deleteAllMessagesPressed:" destination="lwd-AH-u8E" id="8VT-Iq-f9m"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="arrow.triangle.2.circlepath" catalog="system" id="HKI-f9-uP6">
+                                <color key="tintColor" name="backgroundColor"/>
+                                <connections>
+                                    <action selector="reloadTableView:" destination="lwd-AH-u8E" id="bvu-pe-lDX"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="awq-Fq-ixi">
                             <color key="tintColor" name="backgroundColor"/>
                             <connections>
@@ -411,6 +419,7 @@
         <segue reference="2mt-cN-3Q7"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="104"/>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>
         <image name="textfield" width="298" height="93"/>
         <namedColor name="BrandBlue">
