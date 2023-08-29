@@ -20,6 +20,8 @@ class ChatViewController: UIViewController {
     
     let db = Firestore.firestore()
     
+    var listener: ListenerRegistration?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,12 +43,17 @@ class ChatViewController: UIViewController {
         
     }
     
+    
+    // Detach listener to prevent firebase from refreshing in background to save battery and data
+    override func viewDidDisappear(_ animated: Bool) {
+        listener?.remove()
+    }
+    
     func loadMessages()
     {
         // Gets executed automatically whenever a new message (document) is added via the send button
-        db.collection(K.FStore.collectionName).addSnapshotListener { querySnapshot, error in
+        listener = db.collection(K.FStore.collectionName).addSnapshotListener { querySnapshot, error in
             self.messages = []
-            
             if error != nil
             {
                 print("Error reading data from Firestore: \(error!)")
@@ -119,7 +126,7 @@ class ChatViewController: UIViewController {
                         document.reference.delete()
                     }
                     self.messages = []
-                    print("Successfully deleted data")
+//                    print("Successfully deleted data")
                     DispatchQueue.main.async {
                         // Wait before reloading for avoiding bug where a single message would remain after deleting, requiring reloading again
                         Thread.sleep(forTimeInterval: 0.1)
@@ -148,7 +155,6 @@ class ChatViewController: UIViewController {
 extension ChatViewController: UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(messages.count)
         return messages.count
     }
     
