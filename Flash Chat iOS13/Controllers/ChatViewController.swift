@@ -184,16 +184,16 @@ extension ChatViewController: UITableViewDataSource
             
             if message.sender == Auth.auth().currentUser?.email
             {
-                cell.meAvatarImageView.isHidden = false
-                cell.youAvatarImageView.isHidden = true
+                cell.meAvatarImageView.isHidden = true
+                cell.youAvatarImageView.isHidden = false
                 cell.messageView.backgroundColor = UIColor(named: K.BrandColors.purple)
                 cell.messageLabel.textColor = UIColor(named: K.BrandColors.lightPurple)
                 // add padding 10 to the right of the message
             }
             else
             {
-                cell.youAvatarImageView.isHidden = false
-                cell.meAvatarImageView.isHidden = true
+                cell.youAvatarImageView.isHidden = true
+                cell.meAvatarImageView.isHidden = false
                 cell.messageView.backgroundColor = UIColor(named: K.BrandColors.lightPurple)
                 cell.messageLabel.textColor = UIColor(named: K.BrandColors.purple)
             }

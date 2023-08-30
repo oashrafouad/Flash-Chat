@@ -18,8 +18,9 @@ class MessageCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        messageView.layer.cornerRadius = 13
+        messageView.layer.cornerRadius = 10
 //        messageView.layer.cornerRadius = messageView.frame.size.height / 5
+//        print(messageView.layer.cornerRadius)
 //        print(messageView.frame.size.height)
         
         // Increase line spacing of messageLabel
