@@ -42,7 +42,7 @@ class ChatViewController: UIViewController {
         loadMessages()
         
     }
-    
+
     
     // Detach listener to prevent firestore from refreshing in background to save battery and data
     override func viewDidDisappear(_ animated: Bool) {
@@ -75,6 +75,12 @@ class ChatViewController: UIViewController {
                     }
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
+                        
+                        // Check if the array is empty first to avoid index at -1 (when history is cleared)
+                        if !self.messages.isEmpty
+                        {
+                            self.tableView.scrollToRow(at: IndexPath(row: self.messages.count - 1, section: 0), at: .top, animated: true)
+                        }
                     }
                 }
             }
@@ -95,7 +101,9 @@ class ChatViewController: UIViewController {
                 else
                 {
 //                    print("Successfully saved data")
-                    self.messageTextfield.text = ""
+                    DispatchQueue.main.async {
+                        self.messageTextfield.text = ""
+                    }
                 }
             }
         }
