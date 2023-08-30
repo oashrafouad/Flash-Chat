@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import FirebaseAuth
 import FirebaseFirestore
 
@@ -15,21 +16,23 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var reloadButton: UIBarButtonItem!
     
     var messages: [Message] = []
-    
     let db = Firestore.firestore()
-    
     var listener: ListenerRegistration?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if #available(iOS 16.0, *) {
+            reloadButton.isHidden = true
+        }
+
         tableView.dataSource = self
         messageTextfield.delegate = self
         
         messageTextfield.enablesReturnKeyAutomatically = true
-       
         
         navigationItem.hidesBackButton = true
         
@@ -165,10 +168,9 @@ class ChatViewController: UIViewController {
     }
     
     
-    @IBAction func reloadTableView(_ sender: UIBarButtonItem) {
+    @IBAction func reloadPressed(_ sender: UIBarButtonItem) {
         tableView.reloadData()
     }
-    
 }
 
 //MARK: - UITableViewDataSource

@@ -370,7 +370,7 @@
                             </barButtonItem>
                             <barButtonItem title="Item" image="arrow.triangle.2.circlepath" catalog="system" id="HKI-f9-uP6">
                                 <connections>
-                                    <action selector="reloadTableView:" destination="lwd-AH-u8E" id="bvu-pe-lDX"/>
+                                    <action selector="reloadPressed:" destination="lwd-AH-u8E" id="bvu-pe-lDX"/>
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
@@ -382,6 +382,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="messageTextfield" destination="UWj-GQ-Vph" id="INS-Xk-EA9"/>
+                        <outlet property="reloadButton" destination="HKI-f9-uP6" id="wQR-ao-7z4"/>
                         <outlet property="sendButton" destination="pym-e9-R2r" id="T0B-gt-Jz0"/>
                         <outlet property="tableView" destination="S6L-hg-cne" id="dTJ-K9-WAe"/>
                     </connections>
@@ -421,7 +422,7 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="2mt-cN-3Q7"/>
+        <segue reference="5rT-IT-xVA"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="104"/>
