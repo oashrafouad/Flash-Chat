@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0727E8BB2A9141CD004F8D2A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0727E8BA2A9141CD004F8D2A /* GoogleService-Info.plist */; };
+		072FF8082A9FF8CC00697DE8 /* send_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 072FF8072A9FF8CB00697DE8 /* send_sound.mp3 */; };
+		072FF80C2A9FFECD00697DE8 /* receive_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 072FF80B2A9FFECD00697DE8 /* receive_sound.mp3 */; };
 		0730C9E02A955DEB008ACCE5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0730C9DF2A955DEB008ACCE5 /* Constants.swift */; };
 		0730C9E42A956B5A008ACCE5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0730C9E32A956B5A008ACCE5 /* Message.swift */; };
 		07750D6F2A980FD200E3CC38 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07750D6D2A980FD200E3CC38 /* MessageCell.swift */; };
@@ -28,6 +30,8 @@
 /* Begin PBXFileReference section */
 		046979421A7485601880AFE9 /* Pods_Flash_Chat_iOS13.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flash_Chat_iOS13.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0727E8BA2A9141CD004F8D2A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		072FF8072A9FF8CB00697DE8 /* send_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = send_sound.mp3; sourceTree = "<group>"; };
+		072FF80B2A9FFECD00697DE8 /* receive_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = receive_sound.mp3; sourceTree = "<group>"; };
 		0730C9DF2A955DEB008ACCE5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0730C9E32A956B5A008ACCE5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		07750D6D2A980FD200E3CC38 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 				0B628193235DF03400E35CAF /* Views */,
 				0B628192235DF02000E35CAF /* Controllers */,
 				0B62817F235DEE8400E35CAF /* Assets.xcassets */,
+				072FF8072A9FF8CB00697DE8 /* send_sound.mp3 */,
+				072FF80B2A9FFECD00697DE8 /* receive_sound.mp3 */,
 				0B628181235DEE8400E35CAF /* LaunchScreen.storyboard */,
 				0B628184235DEE8400E35CAF /* Info.plist */,
 				0727E8BA2A9141CD004F8D2A /* GoogleService-Info.plist */,
@@ -205,8 +211,10 @@
 			files = (
 				0B628183235DEE8400E35CAF /* LaunchScreen.storyboard in Resources */,
 				07750D702A980FD200E3CC38 /* MessageCell.xib in Resources */,
+				072FF8082A9FF8CC00697DE8 /* send_sound.mp3 in Resources */,
 				0B628180235DEE8400E35CAF /* Assets.xcassets in Resources */,
 				0727E8BB2A9141CD004F8D2A /* GoogleService-Info.plist in Resources */,
+				072FF80C2A9FFECD00697DE8 /* receive_sound.mp3 in Resources */,
 				0B62819E235F0F4D00E35CAF /* README.md in Resources */,
 				0B62817E235DEE8100E35CAF /* Main.storyboard in Resources */,
 			);

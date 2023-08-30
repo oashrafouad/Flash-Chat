@@ -21,12 +21,27 @@ class ChatViewController: UIViewController {
     var messages: [Message] = []
     let db = Firestore.firestore()
     var listener: ListenerRegistration?
+    var sendPlayer: AVAudioPlayer?
+    var receivePlayer: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if #available(iOS 16.0, *) {
             reloadButton.isHidden = true
+        }
+        
+        if let sendSoundUrl = Bundle.main.url(forResource: "send_sound", withExtension: "mp3"), let receiveSoundUrl = Bundle.main.url(forResource: "receive_sound", withExtension: "mp3")
+        {
+            do
+            {
+                sendPlayer = try AVAudioPlayer(contentsOf: sendSoundUrl)
+                receivePlayer = try AVAudioPlayer(contentsOf: receiveSoundUrl)
+            }
+            catch
+            {
+                print(error)
+            }
         }
 
         tableView.dataSource = self
@@ -75,6 +90,7 @@ class ChatViewController: UIViewController {
                             
                         }
                     }
+                    
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                         
@@ -82,6 +98,15 @@ class ChatViewController: UIViewController {
                         if !self.messages.isEmpty
                         {
                             self.tableView.scrollToRow(at: IndexPath(row: self.messages.count - 1, section: 0), at: .top, animated: true)
+                            
+                            if self.messages.last?.sender == Auth.auth().currentUser?.email
+                            {
+                                self.sendPlayer?.play()
+                            }
+                            else
+                            {
+                                self.receivePlayer?.play()
+                            }
                         }
                     }
                 }
@@ -197,7 +222,6 @@ extension ChatViewController: UITableViewDataSource
                 cell.youAvatarImageView.isHidden = false
                 cell.messageView.backgroundColor = UIColor(named: K.BrandColors.purple)
                 cell.messageLabel.textColor = UIColor(named: K.BrandColors.lightPurple)
-                // add padding 10 to the right of the message
             }
             else
             {
