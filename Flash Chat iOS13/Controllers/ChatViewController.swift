@@ -52,7 +52,7 @@ class ChatViewController: UIViewController {
     func loadMessages()
     {
         // Gets executed automatically whenever a new message (document) is added via the send button
-        listener = db.collection(K.FStore.collectionName).addSnapshotListener { querySnapshot, error in
+        listener = db.collection(K.FStore.collectionName).order(by: K.FStore.dateField).addSnapshotListener { querySnapshot, error in
             self.messages = []
             if error != nil
             {
@@ -82,13 +82,11 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
-//        let date = Date().timeIntervalSince1970
-//        print(date)
         if let messageSender = Auth.auth().currentUser?.email, let messageBody = messageTextfield.text {
             db.collection(K.FStore.collectionName).addDocument(data: [
                 K.FStore.senderField: messageSender,
                 K.FStore.bodyField: messageBody,
-                K.FStore.dateField: Date().timeIntervalSince1970
+                K.FStore.dateField: Date()
             ]) { (error) in
                 if error != nil
                 {
