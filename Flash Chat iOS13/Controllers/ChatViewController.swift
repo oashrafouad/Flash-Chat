@@ -44,7 +44,7 @@ class ChatViewController: UIViewController {
     }
     
     
-    // Detach listener to prevent firebase from refreshing in background to save battery and data
+    // Detach listener to prevent firestore from refreshing in background to save battery and data
     override func viewDidDisappear(_ animated: Bool) {
         listener?.remove()
     }
@@ -101,12 +101,24 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
-        do {
-            try Auth.auth().signOut()
-            navigationController?.popToRootViewController(animated: true)
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
+        let alertController = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .alert)
+        
+        let logOutAlertAction = UIAlertAction(title: "Log out", style: .destructive)
+        {_ in
+            do {
+                try Auth.auth().signOut()
+                self.navigationController?.popToRootViewController(animated: true)
+            } catch let signOutError as NSError {
+                print("Error signing out: %@", signOutError)
+            }
         }
+        
+        let cancelAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(logOutAlertAction)
+        alertController.addAction(cancelAlertAction)
+        
+        present(alertController, animated: true)
     }
     
     // Delete all messages (documents) (only for testing)
