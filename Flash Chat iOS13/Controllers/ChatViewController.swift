@@ -29,10 +29,7 @@ class ChatViewController: UIViewController {
         messageTextfield.delegate = self
         
         messageTextfield.enablesReturnKeyAutomatically = true
-        
-        title = K.appName
-        // Change title color to white
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+       
         
         navigationItem.hidesBackButton = true
         
@@ -46,6 +43,8 @@ class ChatViewController: UIViewController {
     
     // Detach listener to prevent firestore from refreshing in background to save battery and data
     override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
         listener?.remove()
     }
     

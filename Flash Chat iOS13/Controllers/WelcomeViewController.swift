@@ -15,6 +15,8 @@ class WelcomeViewController: UIViewController {
     
     // Animate label each time user returns to welcome screen
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         titleLabel.text = K.appName
     }
 }

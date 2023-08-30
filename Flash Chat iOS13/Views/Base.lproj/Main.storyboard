@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚡️FlashChat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7D-jv-BlJ" customClass="CLTypingLabel" customModule="CLTypingLabel">
-                                <rect key="frame" x="207" y="418" width="0.0" height="60"/>
+                                <rect key="frame" x="53.5" y="418" width="307.5" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="ph1-wX-D3a"/>
                                 </constraints>
@@ -289,7 +289,7 @@
             </objects>
             <point key="canvasLocation" x="1857.9710144927537" y="643.52678571428567"/>
         </scene>
-        <!--Chat View Controller-->
+        <!--⚡️FlashChat-->
         <scene sceneID="yeH-Ia-3JZ">
             <objects>
                 <viewController id="lwd-AH-u8E" customClass="ChatViewController" customModule="Flash_Chat_iOS13" customModuleProvider="target" sceneMemberID="viewController">
@@ -360,7 +360,7 @@
                             <constraint firstItem="S6L-hg-cne" firstAttribute="top" secondItem="6YX-ca-E8f" secondAttribute="top" id="sQt-L5-8LV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Q5u-eL-Bgp">
+                    <navigationItem key="navigationItem" title="⚡️FlashChat" id="Q5u-eL-Bgp">
                         <leftBarButtonItems>
                             <barButtonItem systemItem="trash" id="h9v-yW-Kym">
                                 <color key="tintColor" red="1" green="0.59819717174522202" blue="0.57265426708605882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -369,14 +369,12 @@
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="arrow.triangle.2.circlepath" catalog="system" id="HKI-f9-uP6">
-                                <color key="tintColor" name="backgroundColor"/>
                                 <connections>
                                     <action selector="reloadTableView:" destination="lwd-AH-u8E" id="bvu-pe-lDX"/>
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="awq-Fq-ixi">
-                            <color key="tintColor" name="backgroundColor"/>
                             <connections>
                                 <action selector="logOutPressed:" destination="lwd-AH-u8E" id="8RB-pc-nDP"/>
                             </connections>
@@ -400,6 +398,12 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="J9G-z4-Sei">
                         <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" name="BrandPurple"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -412,7 +416,9 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="y7D-jv-BlJ"/>
+        <designable name="y7D-jv-BlJ">
+            <size key="intrinsicContentSize" width="307.5" height="60"/>
+        </designable>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="2mt-cN-3Q7"/>
