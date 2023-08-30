@@ -71,10 +71,10 @@ class ChatViewController: UIViewController {
                             let newMessage = Message(sender: messageSender, body: messageBody)
                             self.messages.append(newMessage)
                             
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                            }
                         }
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
                     }
                 }
             }
@@ -82,10 +82,13 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
+//        let date = Date().timeIntervalSince1970
+//        print(date)
         if let messageSender = Auth.auth().currentUser?.email, let messageBody = messageTextfield.text {
             db.collection(K.FStore.collectionName).addDocument(data: [
                 K.FStore.senderField: messageSender,
-                K.FStore.bodyField: messageBody
+                K.FStore.bodyField: messageBody,
+                K.FStore.dateField: Date().timeIntervalSince1970
             ]) { (error) in
                 if error != nil
                 {
