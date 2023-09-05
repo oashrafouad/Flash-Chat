@@ -85,11 +85,12 @@ class ChatViewController: UIViewController {
                         let documentData = document.data()
                         if let messageSender = documentData[K.FStore.senderField] as? String, let messageBody = documentData[K.FStore.bodyField] as? String, let messageTimestamp = documentData[K.FStore.dateField] as? Timestamp
                         {
-                            let formatter = DateFormatter()
-                            formatter.dateStyle = .medium
-                            formatter.timeStyle = .short
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateStyle = .medium
+                            dateFormatter.timeStyle = .short
+                            dateFormatter.doesRelativeDateFormatting = true
                             
-                            let dateString = formatter.string(from: messageTimestamp.dateValue())
+                            let dateString = dateFormatter.string(from: messageTimestamp.dateValue())
 
                             let newMessage = Message(id: document.documentID, sender: messageSender, body: messageBody, time: dateString)
                             self.messages.append(newMessage)
