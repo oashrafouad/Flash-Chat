@@ -12,12 +12,13 @@ class MessageCell: UITableViewCell {
 
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var messageTimeLabel: UILabel!
     @IBOutlet weak var youAvatarImageView: UIImageView!
     @IBOutlet weak var meAvatarImageView: UIImageView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
+//        print(messageTimeLabel.text)
         messageView.layer.cornerRadius = 10
 //        messageView.layer.cornerRadius = messageView.frame.size.height / 5
 //        print(messageView.layer.cornerRadius)

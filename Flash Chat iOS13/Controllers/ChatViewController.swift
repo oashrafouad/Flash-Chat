@@ -83,11 +83,16 @@ class ChatViewController: UIViewController {
                     for document in snapshotDocuments
                     {
                         let documentData = document.data()
-                        if let messageSender = documentData[K.FStore.senderField] as? String, let messageBody = documentData[K.FStore.bodyField] as? String
+                        if let messageSender = documentData[K.FStore.senderField] as? String, let messageBody = documentData[K.FStore.bodyField] as? String, let messageTimestamp = documentData[K.FStore.dateField] as? Timestamp
                         {
-                            let newMessage = Message(sender: messageSender, body: messageBody)
-                            self.messages.append(newMessage)
+                            let formatter = DateFormatter()
+                            formatter.dateStyle = .medium
+                            formatter.timeStyle = .short
                             
+                            let dateString = formatter.string(from: messageTimestamp.dateValue())
+
+                            let newMessage = Message(sender: messageSender, body: messageBody, time: dateString)
+                            self.messages.append(newMessage)
                         }
                     }
                     
@@ -215,6 +220,7 @@ extension ChatViewController: UITableViewDataSource
             
             // TODO: use newer method
             cell.messageLabel?.text = message.body
+            cell.messageTimeLabel?.text = message.time
             
             if message.sender == Auth.auth().currentUser?.email
             {
