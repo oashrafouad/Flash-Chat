@@ -9,6 +9,7 @@ import UIKit
 
 struct Message
 {
+    let id: String
     let sender: String
     let body: String
     let time: String

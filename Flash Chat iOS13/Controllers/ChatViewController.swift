@@ -91,7 +91,7 @@ class ChatViewController: UIViewController {
                             
                             let dateString = formatter.string(from: messageTimestamp.dateValue())
 
-                            let newMessage = Message(sender: messageSender, body: messageBody, time: dateString)
+                            let newMessage = Message(id: document.documentID, sender: messageSender, body: messageBody, time: dateString)
                             self.messages.append(newMessage)
                         }
                     }
@@ -238,6 +238,29 @@ extension ChatViewController: UITableViewDataSource
             }
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let messageID = messages[indexPath.row].id
+        
+        let alertController = UIAlertController(title: "Delete Message", message: "Are you sure you want to delete this message?", preferredStyle: .alert)
+        
+        let deleteAlertAction = UIAlertAction(title: "Delete", style: .destructive) { action in
+            self.db.collection(K.FStore.collectionName).document(messageID).delete()
+            self.db.collection(K.FStore.collectionName).document(messageID).delete() { error in
+                if error != nil
+                {
+                    print("Error deleting document: \(error!)")
+                }
+            }
+        }
+        
+        let cancelAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(deleteAlertAction)
+        alertController.addAction(cancelAlertAction)
+        
+        self.present(alertController, animated: true)
     }
 }
 
