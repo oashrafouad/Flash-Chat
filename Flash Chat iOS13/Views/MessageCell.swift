@@ -33,6 +33,9 @@ class MessageCell: UITableViewCell {
 
         // Apply the attributed (styled) string to messageLabel
         messageLabel.attributedText = attributedString
+        
+//        let shapeLayer = CAShapeLayer()
+//        let centerX = [2]; let centerY = [5]; let radius = [5]
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
