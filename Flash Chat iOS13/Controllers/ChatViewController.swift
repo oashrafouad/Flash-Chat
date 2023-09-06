@@ -229,6 +229,7 @@ extension ChatViewController: UITableViewDataSource
                 cell.youAvatarImageView.isHidden = false
                 cell.messageView.backgroundColor = UIColor(named: K.BrandColors.purple)
                 cell.messageLabel.textColor = UIColor(named: K.BrandColors.lightPurple)
+                cell.messageTimeLabel.textColor = UIColor(named: K.BrandColors.lightGray)
             }
             else
             {
@@ -236,6 +237,7 @@ extension ChatViewController: UITableViewDataSource
                 cell.meAvatarImageView.isHidden = false
                 cell.messageView.backgroundColor = UIColor(named: K.BrandColors.lightPurple)
                 cell.messageLabel.textColor = UIColor(named: K.BrandColors.purple)
+                cell.messageTimeLabel.textColor = UIColor(named: K.BrandColors.lightPurpleTime)
             }
         }
         return cell

@@ -16,8 +16,10 @@ struct K {
     struct BrandColors {
         static let purple = "BrandPurple"
         static let lightPurple = "BrandLightPurple"
+        static let lightPurpleTime = "BrandLightPurpleTime"
         static let blue = "BrandBlue"
         static let lighBlue = "BrandLightBlue"
+        static let lightGray = "BrandLightGray"
     }
     
     struct FStore {
