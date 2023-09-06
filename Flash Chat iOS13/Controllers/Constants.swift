@@ -18,7 +18,7 @@ struct K {
         static let lightPurple = "BrandLightPurple"
         static let lightPurpleTime = "BrandLightPurpleTime"
         static let blue = "BrandBlue"
-        static let lighBlue = "BrandLightBlue"
+        static let lightBlue = "BrandLightBlue"
         static let lightGray = "BrandLightGray"
     }
     
