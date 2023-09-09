@@ -10,3 +10,5 @@ I also improved upon the app by adding **features of my own**:
 * Playing sound when sending and receiving a message
 
 https://github.com/oashrafouad/Flash-Chat/assets/31867324/ee2c8cc1-6d1b-4dbc-91ce-1e99e1b55391
+
+**Note:** This app is part of [Angela Yu's iOS Development Course](https://www.udemy.com/course/ios-13-app-development-bootcamp/)
